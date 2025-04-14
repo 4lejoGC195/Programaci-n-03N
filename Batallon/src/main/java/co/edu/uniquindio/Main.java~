@@ -1,0 +1,44 @@
+package co.edu.uniquindio;
+
+import java.time.LocalDate;
+import java.util.LinkedList;
+
+public class Main {
+    public static void main(String[] args) {
+        // Crear una instancia de Batallon
+        Batallon batallon = new Batallon("Batallon 1", "B001");
+
+        // Crear algunos vehículos
+        VehiculoApoyo vehiculoApoyo = new VehiculoApoyo("A001", "Modelo A", 2020, 15000, EstadoOperativo.DISPONIBLE, TipoFuncion.LOGISTICA);
+        VehiculoBlindado vehiculoBlindado = new VehiculoBlindado("B001", "Modelo B", 2019, 20000, EstadoOperativo.DISPONIBLE, 5);
+        VehiculoTransporteTropa vehiculoTransporte = new VehiculoTransporteTropa("C001", "Modelo C", 2021, 10000, EstadoOperativo.DISPONIBLE, 30);
+
+        // Agregar vehículos al Batallon
+        batallon.getListVehiculosApoyo().add(vehiculoApoyo);
+        batallon.getListVehiculosBlindados().add(vehiculoBlindado);
+        batallon.getListVehiculosTransporteTropa().add(vehiculoTransporte);
+
+        // Registrar una misión
+        LinkedList<String> personal = new LinkedList<>();
+        personal.add("Soldado 1");
+        personal.add("Soldado 2");
+
+        boolean misionRegistrada = batallon.registrarMision(LocalDate.now(), "Zona de Combate", personal, "B001");
+        System.out.println("Misión registrada: " + misionRegistrada);
+
+        // Calcular el kilometraje promedio
+        batallon.calcularKilometrajePromedio();
+
+        // Filtrar misiones por ubicación y fecha
+        LinkedList<Mision> misionesFiltradas = batallon.filtrarMisiones("Zona de Combate", LocalDate.now().minusDays(1), LocalDate.now());
+        System.out.println("Misiones filtradas: " + misionesFiltradas.size());
+
+        // Obtener vehículo con más misiones completadas
+        Vehiculo vehiculoConMasMisiones = batallon.obtenerVehiculoConMasMisiones();
+        if (vehiculoConMasMisiones != null) {
+            System.out.println("Vehículo con más misiones completadas: " + vehiculoConMasMisiones.getId());
+        } else {
+            System.out.println("No hay vehículos registrados.");
+        }
+    }
+}

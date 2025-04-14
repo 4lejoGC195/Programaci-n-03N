@@ -1,0 +1,36 @@
+package co.edu.uniquindio;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+import java.util.logging.Logger;
+
+import static org.junit.jupiter.api.Assertions.*;
+/**
+ * Clase Batallon para probar el
+ * @author Alejandro Garcia Cadavid
+ * @since 2025/04
+ *
+ * Licencia GNU/GPL V3.0 (https://raw.githubusercontent.com/grid-uq/poo/main/LICENSE)
+ */
+
+public class BatallonTest {
+    private static final Logger LOG = Logger.getLogger(BatallonTest.class.getName());
+    @Test
+    public void testUno(){
+        LOG.info("La prueba TestUno inicio");
+
+        //codigo
+        Batallon newBatallon =new Batallon("Cacique Calarca","001");
+
+
+        assertEquals(1, newBatallon.getListVehiculosBlindados().size());
+
+
+        LOG.info("La prueba TestUno finalizó");
+    }
+
+
+
+
+}
